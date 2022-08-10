@@ -1,0 +1,9 @@
+.focusSection {
+  display:flex;
+  flex-direction: column;
+  height: 150vh;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
