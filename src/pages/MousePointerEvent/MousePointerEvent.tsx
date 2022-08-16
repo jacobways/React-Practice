@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 
+import './MousePointerEvent.scss'
+
 export default function MousePointerEvent () {
 
   const [isOpen, setIsOpen] = useState(false);
@@ -18,19 +20,21 @@ export default function MousePointerEvent () {
   return (
     <>
       <div className="mousePointer">
-        <button onClick={openHandler}>옵션을 선택해주세요</button>
+        <button onClick={openHandler} className="modal-button">옵션을 선택해주세요</button>
         {isOpen && (
-          <ul>
-            <li>선택1</li>
-            <li>선택2</li>
-            <li>선택3</li>
-          </ul>
-        )
+          <div className="modal">
+            <ul className="modal-content">
+              <span className="close" onClick={openHandler}>&times;</span>
+              <li>선택1</li>
+              <li>선택2</li>
+              <li>선택3</li>
+            </ul>
+          </div>)
         }
       </div>
 
       <div className="mousePointer">
-       <button>전송하기</button>
+        <button>전송하기</button>
       </div>
 
       <div className="mousePointer">
