@@ -1,45 +1,56 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from 'react';
 
-import './MousePointerEvent.scss'
+import './MousePointerEvent.scss';
 
-export default function MousePointerEvent () {
-
+export default function MousePointerEvent() {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleContainer = useRef<HTMLElement>(null);
+  const toggleContainer = useRef<HTMLDivElement>(null);
 
-  const openHandler = (e:any) => {
-    setIsOpen(!isOpen)
-  }
+  const openHandler = (e: any) => {
+    setIsOpen(!isOpen);
+  };
 
-  const handleClickOutside = (e:any) => {
-    if(isOpen && toggleContainer.current?.contains(e.target)) {
-      setIsOpen(!isOpen)
+  const handleClickOutside = (e: any) => {
+    if (isOpen && toggleContainer.current?.contains(e.target)) {
+      setIsOpen(!isOpen);
     }
-  }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside, true);
+
+    return () => {
+      window.removeEventListener('click', handleClickOutside, true);
+    };
+  });
 
   return (
     <>
-      <div className="mousePointer">
-        <button onClick={openHandler} className="modal-button">옵션을 선택해주세요</button>
+      <div className='mousePointer' ref={toggleContainer}>
+        <button onClick={openHandler} className='modal-button'>
+          옵션을 선택해주세요
+        </button>
         {isOpen && (
-          <div className="modal">
-            <ul className="modal-content">
-              <span className="close" onClick={openHandler}>&times;</span>
+          <div className='modal'>
+            <ul>
+              <span className='close' onClick={openHandler}>
+                &times;
+              </span>
               <li>선택1</li>
               <li>선택2</li>
               <li>선택3</li>
             </ul>
-          </div>)
-        }
+          </div>
+        )}
       </div>
 
-      <div className="mousePointer">
+      <div className='mousePointer'>
         <button>전송하기</button>
       </div>
 
-      <div className="mousePointer">
+      <div className='mousePointer'>
         <button>삭제하기</button>
       </div>
     </>
-  )
+  );
 }
