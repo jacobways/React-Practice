@@ -6,6 +6,8 @@ export default function MousePointerEvent() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleContainer = useRef<HTMLDivElement>(null);
 
+  let timeOutId: any = null;
+
   const openHandler = (e: any) => {
     setIsOpen(!isOpen);
   };
@@ -14,6 +16,16 @@ export default function MousePointerEvent() {
     if (isOpen && toggleContainer.current?.contains(e.target)) {
       setIsOpen(!isOpen);
     }
+  };
+
+  const handleBlur = () => {
+    timeOutId = setTimeout(() => {
+      setIsOpen(false);
+    });
+  };
+
+  const handleFocus = () => {
+    clearTimeout(timeOutId);
   };
 
   useEffect(() => {
@@ -26,7 +38,12 @@ export default function MousePointerEvent() {
 
   return (
     <>
-      <div className='mousePointer' ref={toggleContainer}>
+      <div
+        className='mousePointer'
+        ref={toggleContainer}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+      >
         <button onClick={openHandler} className='modal-button'>
           옵션을 선택해주세요
         </button>
