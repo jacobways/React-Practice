@@ -1,0 +1,30 @@
+.mapImg {
+  border: 1px solid #ccc;
+}
+
+.hide {
+  overflow: hidden;
+  padding: 7px 11px;
+  border: 1px solid #dfdfdf;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 2px 2px;
+  background-color: #f9f9f9;
+  width: 482px;
+
+  strong {
+    float: left;
+  }
+
+  div {
+    float: right;
+    position:relative a {
+      font-size: 12px;
+      text-decoration: none;
+      float: left;
+      height: 15px;
+      padding-top: 1px;
+      line-height: 15px;
+      color: #000;
+    }
+  }
+}
