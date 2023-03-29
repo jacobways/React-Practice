@@ -12,6 +12,7 @@ export default function Router() {
         <Route path='mouse' element={<MousePointerEvent />} />
         <Route path='lazy' element={<Lazy />} />
         <Route path='usememocallback' element={<UseMemoTest />} />
+        <Route path="getselection" element={<GetSelection />} />
       </Routes>
     </>
   );
